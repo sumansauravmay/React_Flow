@@ -46,14 +46,12 @@ const DnDFlow = () => {
 
       const type = event.dataTransfer.getData('application/reactflow');
 
-      // check if the dropped element is valid
+      
       if (typeof type === 'undefined' || !type) {
         return;
       }
 
-      // reactFlowInstance.project was renamed to reactFlowInstance.screenToFlowPosition
-      // and you don't need to subtract the reactFlowBounds.left/top anymore
-      // details: https://reactflow.dev/whats-new/2023-11-10
+      
       const position = reactFlowInstance.screenToFlowPosition({
         x: event.clientX,
         y: event.clientY,
@@ -73,6 +71,7 @@ const DnDFlow = () => {
   return (
     <div className="dndflow">
       <ReactFlowProvider>
+      <Sidebar />
         <div className="reactflow-wrapper" ref={reactFlowWrapper}>
           <ReactFlow
             nodes={nodes}
@@ -88,7 +87,7 @@ const DnDFlow = () => {
             <Controls />
           </ReactFlow>
         </div>
-        <Sidebar />
+        
       </ReactFlowProvider>
     </div>
   );
