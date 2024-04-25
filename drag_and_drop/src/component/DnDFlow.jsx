@@ -1,22 +1,21 @@
-import React, { useState, useRef, useCallback } from 'react';
+import React, { useState, useRef, useCallback } from "react";
 import ReactFlow, {
   ReactFlowProvider,
   addEdge,
   useNodesState,
   useEdgesState,
   Controls,
-} from 'reactflow';
-import 'reactflow/dist/style.css';
+} from "reactflow";
+import "reactflow/dist/style.css";
+import Sidebar from "./Sidebar";
 
-import Sidebar from './Sidebar';
-
-import './index.css';
+import "./index.css";
 
 const initialNodes = [
   {
-    id: '1',
-    type: 'input',
-    data: { label: 'input node' },
+    id: "1",
+    type: "input",
+    data: { label: "input node" },
     position: { x: 250, y: 5 },
   },
 ];
@@ -32,26 +31,24 @@ const DnDFlow = () => {
 
   const onConnect = useCallback(
     (params) => setEdges((eds) => addEdge(params, eds)),
-    [],
+    []
   );
 
   const onDragOver = useCallback((event) => {
     event.preventDefault();
-    event.dataTransfer.dropEffect = 'move';
+    event.dataTransfer.dropEffect = "move";
   }, []);
 
   const onDrop = useCallback(
     (event) => {
       event.preventDefault();
 
-      const type = event.dataTransfer.getData('application/reactflow');
+      const type = event.dataTransfer.getData("application/reactflow");
 
-      
-      if (typeof type === 'undefined' || !type) {
+      if (typeof type === "undefined" || !type) {
         return;
       }
 
-      
       const position = reactFlowInstance.screenToFlowPosition({
         x: event.clientX,
         y: event.clientY,
@@ -65,14 +62,13 @@ const DnDFlow = () => {
 
       setNodes((nds) => nds.concat(newNode));
     },
-    [reactFlowInstance],
+    [reactFlowInstance]
   );
 
   return (
     <div className="dndflow">
-       
       <ReactFlowProvider>
-      <Sidebar />
+        <Sidebar />
         <div className="reactflow-wrapper" ref={reactFlowWrapper}>
           <ReactFlow
             nodes={nodes}
@@ -89,10 +85,10 @@ const DnDFlow = () => {
           </ReactFlow>
         </div>
         <div>
-            <label>WorkFlow ID:</label>
-            <input type="text"/>
-            <br/>
-            <button>Save WorkFflow</button>
+          <label>WorkFlow ID:</label>
+          <input type="text" />
+          <br />
+          <button>Save WorkFflow</button>
         </div>
       </ReactFlowProvider>
     </div>
@@ -100,6 +96,3 @@ const DnDFlow = () => {
 };
 
 export default DnDFlow;
-
-
-
