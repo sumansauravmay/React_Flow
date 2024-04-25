@@ -70,6 +70,7 @@ const DnDFlow = () => {
 
   return (
     <div className="dndflow">
+       
       <ReactFlowProvider>
       <Sidebar />
         <div className="reactflow-wrapper" ref={reactFlowWrapper}>
@@ -87,7 +88,12 @@ const DnDFlow = () => {
             <Controls />
           </ReactFlow>
         </div>
-        
+        <div>
+            <label>WorkFlow ID:</label>
+            <input type="text"/>
+            <br/>
+            <button>Save WorkFflow</button>
+        </div>
       </ReactFlowProvider>
     </div>
   );
