@@ -7,6 +7,7 @@ function Flow() {
   return (
     <div style={{ height: '100%' }}>
       <ReactFlow>
+        
         <Background variant={variants} color='blue' gap="50"/>
         <Controls />
         <Panel>
